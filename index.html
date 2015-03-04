@@ -9,17 +9,14 @@
 
     <!--Add Traceur-->
     <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
-    <script> traceur.options.experimental = true; </script>
     <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
 
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script type="module" src="app.js"></script>
 </head>
 <body>
-
-<script type="module">
-    var add = (x,y) => x+y;
-    document.write(add(3,5));
-</script>
 
 </body>
 </html>
