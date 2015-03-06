@@ -21,4 +21,9 @@ promise.then(function (data) {
     console.log(error);
 });
 
-let
+let first = "bellicose";
+let second = "agnostic";
+
+console.log(`$(first)`);
+console.log(first);
+console.log(String.raw `$(first)`);

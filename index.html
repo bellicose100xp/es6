@@ -9,6 +9,16 @@
 
     <!--Add Traceur-->
     <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <script type="text/javascript">
+        var metadata = {};
+        metadata.traceurOptions = {
+            experimental: true,
+            annotations: true
+        };
+        System.import("client/src/app", {metadata: metadata}).catch(function(ex) {
+            console.error('Internal Error ', ex.stack || ex);
+        });
+    </script>
     <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
