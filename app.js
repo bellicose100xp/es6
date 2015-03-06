@@ -20,3 +20,5 @@ promise.then(function (data) {
 }, function (error) {
     console.log(error);
 });
+
+let
