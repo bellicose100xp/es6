@@ -24,6 +24,7 @@ promise.then(function (data) {
 let first = "bellicose";
 let second = "agnostic";
 
-console.log(`$(first)`);
-console.log(first);
-console.log(String.raw `$(first)`);
+
+var button = document.createElement('button');
+button.textContent = first;
+document.body.appendChild(button);
