@@ -1,44 +1,30 @@
-let first = "bellicose";
-let second = "agnostic";
+import * as a from './module/note.js'
 
+console.log(`note is: ${a.default.note} and tape is: ${a.default.tape}`);
 
-var button = document.createElement('button');
-button.textContent = first;
-button.onclick = function () {
-    alert("My name is slim shady!");
+let [x,y] = [2, 3];
+
+console.log(`x is ${x} and y is ${y}`);
+
+let doWork = () => [y, x];
+
+[x,y] = doWork();
+
+console.log(`x is ${x} and y is ${y}`);
+
+let doObjectWork = () => {
+    return {
+        first: "scott",
+        second: "Allen",
+        handles: {
+            twitter: "OdeToCode"
+        }
+    }
 };
-document.body.appendChild(button);
 
+let {
+        first: firstName,
+        handles: { twitter: twitterName }
+    } = doObjectWork();
 
-class Car {
-
-    constructor(make) {
-        this.make = make;
-        this.speed = 55;
-    }
-
-    printSpeed(){
-        console.log(this.make + 'is going at ' + this.speed + ' mph');
-    }
-}
-
-var car = new Car("Mercedes");
-car.printSpeed();
-
-class RaceCar extends car {
-
-    constructor(make, topSpeed) {
-        super(make,make);
-        this.topSpeed = topSpeed;
-    }
-
-    goFast(){
-        this.speed = this.topSpeed;
-    }
-}
-
-var toyota = new RaceCar("corolla", 350);
-
-console.log(toyota.speed);
-toyota.goFast();
-console.log(toyota.speed);
+console.log(`First Name: ${firstName} & Twitter Account: ${twitterName}`);
