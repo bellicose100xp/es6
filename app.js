@@ -14,13 +14,19 @@ document.querySelector('#copy-button').addEventListener('click', copyTemplate, f
 
 let clearCopies = () => {
   let p = document.querySelectorAll('p');
-    console.log(typeof p);
-    console.log(p.length);
-    console.log(p);
 
     for(let i=0; i< p.length; i++) {
-     p[i].parentNode.removeChild(p[i]);
+
+    p[i].parentNode.removeChild(p[i]);
+
     }
+
+    let x = [1,2,4,5,6];
+
+    x.forEach((num) => console.log(num) );
+
+    console.log(`type of x is ${Object.prototype.toString.call(x)} & type of p is ${Object.prototype.toString.call(p)}`);
+
 };
 
 document.querySelector('#clear-copies').addEventListener('click', clearCopies, false);
