@@ -1,12 +1,26 @@
-let numbers = [1,2,3,4,5];
+let count = 0;
 
-let sum = 0;
+let copyTemplate = () => {
+    let template = document.querySelector('template');
+    let clone = document.importNode(template.content, true);
 
-numbers.forEach(n => sum += n);
+    clone.querySelector('.expression').textContent = "ultra awesome";
+    clone.querySelector('.number-of-times').textContent = ++count;
 
-let double = numbers.map(n => n * 2);
+    document.body.appendChild(clone);
+};
 
-console.log(numbers);
-console.log(sum);
-console.log(double);
+document.querySelector('#copy-button').addEventListener('click', copyTemplate, false);
 
+let clearCopies = () => {
+  let p = document.querySelectorAll('p');
+    console.log(typeof p);
+    console.log(p.length);
+    console.log(p);
+
+    for(let i=0; i< p.length; i++) {
+     p[i].parentNode.removeChild(p[i]);
+    }
+};
+
+document.querySelector('#clear-copies').addEventListener('click', clearCopies, false);
