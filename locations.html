@@ -1,0 +1,36 @@
+<template>
+
+    <a href="#" id="anchor">Travel Where!</a>
+
+    <ul>
+        <li>Seattle</li>
+        <li>Tacoma</li>
+        <li>Houston</li>
+    </ul>
+
+</template>
+
+<script>
+    (function () {
+        var importDoc = document.currentScript.ownerDocument;
+        var proto = Object.create(HTMLElement.prototype);
+
+        proto.createdCallback = function () {
+            var template = importDoc.querySelector('template');
+            var clone = document.importNode(template.content, true);
+
+            var travel = clone.querySelector('#anchor');
+
+            travel.addEventListener('click', function () {
+                alert("I really want to travel!!!");
+            });
+
+            var root = this.createShadowRoot();
+            root.appendChild(clone);
+        };
+
+        document.registerElement('my-travel',{
+            prototype: proto
+        })
+    })();
+</script>

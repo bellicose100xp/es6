@@ -1,0 +1,95 @@
+<template id="slideshow-template">
+    <style>
+        #slideshow-container {
+            width: 500px;
+            height: 400px;
+        }
+
+        #slideshow-image {
+            width: 498px;
+            height: 398px;
+        }
+    </style>
+    <div id="slideshow-container">
+        <img src="assets/images/IMG_1378.jpg" id="slideshow-image">
+        <button id="slideshow-previous">PREVIOUS</button>
+        <!--<button id="stop-slideshow">STOP</button>-->
+        <button id="pause-play">PAUSE</button>
+        <button id="slideshow-next">NEXT</button>
+    </div>
+</template>
+
+<script>
+    (function () {
+        //ref for this document elements
+        var slideDoc = document.currentScript.ownerDocument;
+        // create html element prototype
+        var slideProto = Object.create(HTMLElement.prototype);
+        //callback for when the element get added to DOM
+        slideProto.createdCallback = function () {
+            //get template ref inside this doc
+            var slideTemplate = slideDoc.querySelector('#slideshow-template');
+            // clone the template
+            var slideClone = slideDoc.importNode(slideTemplate.content, true);
+
+            var imageElementInSlideshow = slideClone.querySelector('#slideshow-image');
+
+            var images = ['IMG_1378',
+                'IMG_1379',
+                'IMG_1380',
+                'IMG_1382',
+                'IMG_1385',
+                'IMG_1386',
+                'IMG_1390'];
+
+            var imageArrayLength = images.length;
+            console.log(`Length: ${imageArrayLength}`);
+
+            var count = 1;
+            var pause = false;
+
+           setInterval(function () {
+                       if (!pause) {
+                           if (count >= imageArrayLength) {
+                               count = 0;
+                           }
+                           imageElementInSlideshow.src = `assets/images/${images[count]}.jpg`;
+                           count++;
+                       }
+                   }
+                    , 5000);
+
+//            var stopSlideShowButton = slideClone.querySelector('#stop-slideshow');
+//            stopSlideShowButton.addEventListener('click', function () {
+//               clearInterval(slideShowInterval);
+//                console.log("Slideshow has stopped");
+//            });
+
+            var toggleSlideShowButton = slideClone.querySelector('#pause-play');
+            toggleSlideShowButton.addEventListener('click', function () {
+                pause = !pause;
+                toggleSlideShowButton.innerText = pause ? "PLAY" : "PAUSE";
+            });
+
+            slideClone.querySelector('#slideshow-previous').addEventListener('click', function () {
+                count = count === 0 ? imageArrayLength - 1 : --count;
+                imageElementInSlideshow.src = `assets/images/${images[count]}.jpg`;
+            });
+
+            slideClone.querySelector('#slideshow-next').addEventListener('click', function () {
+                count = count < imageArrayLength - 1 ? ++count : 0;
+                imageElementInSlideshow.src = `assets/images/${images[count]}.jpg`;
+            });
+
+            // create show root at this element
+            var slideShadowRoot = this.createShadowRoot();
+            // append cloned content
+            slideShadowRoot.appendChild(slideClone);
+        };
+        // register element
+        document.registerElement('my-slide', {
+            prototype: slideProto
+        });
+    }());
+</script>
+
